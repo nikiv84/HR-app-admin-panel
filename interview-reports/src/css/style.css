@@ -274,6 +274,15 @@ table tr:nth-child(even):hover i {
   font-size: 1.15rem;
 }
 
+.modal.show-modal {
+  display: block;
+  top: 10%;
+}
+
+.disp-block {
+  display: block;
+}
+
 .err404 {
   display: flex;
   align-items: center;
