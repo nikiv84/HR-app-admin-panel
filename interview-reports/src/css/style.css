@@ -1,0 +1,281 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,400,700|Share+Tech+Mono");
+body {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.m-align {
+  vertical-align: middle;
+}
+
+.error, .info {
+  background-color: #C62828;
+  color: #fff;
+}
+
+.error a, .info a {
+  margin-right: 1rem;
+  background-color: #e8eaf6;
+}
+
+.error a:hover, .info a:hover {
+  background-color: #e8eaf6;
+}
+
+.error i, .info i {
+  color: #C62828;
+}
+
+.info {
+  background-color: #1a237e;
+}
+
+.info:hover {
+  background-color: #1a237e;
+}
+
+.info i {
+  color: #1a237e;
+}
+
+.card {
+  transition: all 0.25s cubic-bezier(0, 0.98, 0, 2);
+  transform: scale(0.95);
+}
+
+.card a, .card i {
+  font-size: 0.85rem;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.card i {
+  padding-bottom: 2px;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1) rotate3d(1, -1, 0, -10deg);
+}
+
+.card.small .card-image, .card.medium .card-image, .card.large .card-image {
+  max-height: 70%;
+  overflow: hidden;
+}
+
+.card.small .card-image+.card-content, .card.medium .card-image+.card-content, .card.large .card-image+.card-content {
+  max-height: 30%;
+}
+
+.noshdw, .noshdw nav {
+  box-shadow: none;
+}
+
+.heading h2 {
+  margin: 1rem 0;
+}
+
+.valign {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search i {
+  color: #404040;
+}
+
+.search input[type=text] {
+  border-bottom-color: #404040;
+}
+
+.search .input-field .prefix.active {
+  color: #1a237e;
+}
+
+.search input[type=text]:focus {
+  color: #1a237e !important;
+  border-bottom-color: #1a237e !important;
+  box-shadow: 0 1px 0 0 #1a237e !important;
+}
+
+.search input[type=text].valid:not(.browser-default) {
+  color: #1a237e !important;
+  border-bottom-color: #1a237e !important;
+  box-shadow: 0 1px 0 0 #1a237e !important;
+}
+
+.search input[type=text]:focus+label {
+  color: #1a237e !important;
+}
+
+.shadow-overlay {
+  z-index: -50;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: .5;
+  background: #e8eaf6;
+}
+
+#particles {
+  z-index: -100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.candidate-img {
+  transform-origin: bottom left;
+  transition: all 0.25s cubic-bezier(0, 0.98, 0, 2);
+  transform: rotate(-5deg) scale(0.9);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.candidate-img:hover {
+  transform: rotate(0deg) scale(0.95);
+}
+
+.candidate-img img {
+  border: 5px solid #e8eaf6;
+}
+
+.candidate-img {
+  position: relative;
+}
+
+.candidate-img:before {
+  display: block;
+  content: "";
+  height: 85%;
+  width: 150%;
+  position: absolute;
+  background-image: url(./../img/shadow.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  top: 89%;
+  left: -25%;
+  right: 0;
+  transition: all .1s ease-out;
+  transform-origin: 30% 50%;
+  pointer-events: none;
+  z-index: -100;
+}
+
+.candidate-img:hover:before {
+  top: 95%;
+}
+
+.heading h3 {
+  font-size: 2rem;
+}
+
+.search {
+  overflow: hidden;
+}
+
+.nav-wrapper {
+  display: table;
+  width: 100%;
+}
+
+.nav-wrapper a.brand-logo {
+  font-family: 'Share Tech Mono', monospace;
+  position: initial;
+  font-size: 1.75rem;
+}
+
+.nav-wrapper a.brand-logo img {
+  margin-right: 1rem;
+  max-height: 32px;
+}
+
+.nav-wrapper .nav-btns li a.btn {
+  margin: 0;
+  /* -webkit-box-shadow: none;
+  box-shadow: none; */
+}
+
+.nav-wrapper .nav-btns li:first-child a.btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.nav-wrapper .nav-btns li:last-child a.btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nav-wrapper .nav-btns li a.btn.active {
+  background-color: #f43f52!important;
+  color: #fff!important;
+}
+
+table {
+  width: 100%;
+}
+
+table i {
+  vertical-align: middle;
+  color: #1a237e;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+}
+
+table i:hover {
+  transform: scale(1.1);
+}
+
+table tr:nth-child(even):hover {
+  background-color: #1a237e;
+  color: #fff;
+}
+
+table tr:nth-child(even):hover i {
+  color: #fff;
+}
+
+.modal i {
+  color: #1a237e;
+}
+
+.modal .modal-close {
+  margin: 1rem 1rem 0 0;
+}
+
+.modal .modal-title {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #404040;
+}
+
+.modal .note p:last-child {
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+
+@media screen and (min-width: 992px) {
+  .cand-info {
+    margin-top: 2rem;
+  }
+  .heading h3 {
+    font-size: 2.2rem;
+  }
+  .nav-wrapper h1 a.brand-logo {
+    font-size: 2.5rem;
+  }
+  .nav-wrapper a.brand-logo img {
+    max-height: 40px;
+  }
+}
