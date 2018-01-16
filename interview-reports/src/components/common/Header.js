@@ -9,13 +9,13 @@ const Header = () => {
                     <nav className="indigo darken-4">
                         <div className="nav-wrapper">
                             <a href="index.html" className="brand-logo left">
-                                <img src={logo} alt="logo" className="responsive-img m-align" /> Reports Administration</a>
-                            <ul className="right hide-on-small-only nav-btns">
+                                <img src={logo} alt="logo" className="responsive-img m-align hide-on-small-only" />Reports Administration</a>
+                            <ul className="right nav-btns">
                                 <li>
-                                    <a className="waves-effect waves-light btn indigo lighten-5 indigo-text active" href="index.html">Candidates</a>
+                                    <a className="waves-effect waves-light btn indigo lighten-5 indigo-text active" href="index.html">Reports</a>
                                 </li>
                                 <li>
-                                    <a className="waves-effect waves-light btn indigo lighten-5 indigo-text" href="index.html">Candidates</a>
+                                    <a className="waves-effect waves-light btn indigo lighten-5 indigo-text" href="index.html">Create report</a>
                                 </li>
                             </ul>
                         </div>

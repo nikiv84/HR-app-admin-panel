@@ -8,6 +8,12 @@ body {
   position: relative;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 .m-align {
   vertical-align: middle;
 }
@@ -162,7 +168,7 @@ body {
   height: 85%;
   width: 150%;
   position: absolute;
-  background-image: url(./../img/shadow.png);
+  background-image: url("./../assets/img/shadow.png");
   background-size: 100% auto;
   background-repeat: no-repeat;
   top: 89%;
@@ -194,7 +200,8 @@ body {
 .nav-wrapper a.brand-logo {
   font-family: 'Share Tech Mono', monospace;
   position: initial;
-  font-size: 1.75rem;
+  font-size: 1.3rem;
+  letter-spacing: -0.05rem;
 }
 
 .nav-wrapper a.brand-logo img {
@@ -204,8 +211,10 @@ body {
 
 .nav-wrapper .nav-btns li a.btn {
   margin: 0;
-  /* -webkit-box-shadow: none;
-  box-shadow: none; */
+  padding: 0 1rem;
+  line-height: 32px;
+  height: 32px;
+  font-size: 0.9rem;
 }
 
 .nav-wrapper .nav-btns li:first-child a.btn {
@@ -265,7 +274,97 @@ table tr:nth-child(even):hover i {
   font-size: 1.15rem;
 }
 
-@media screen and (min-width: 992px) {
+.err404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.err404 h1 {
+  font-size: 7rem;
+  width: 100%;
+}
+
+.err404 h2 {
+  font-size: 2.5rem;
+  width: 100%;
+}
+
+.report {
+  position: relative;
+  text-align: center;
+}
+
+.report::before {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #1a237e;
+  width: 75%;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0;
+  padding-bottom: 2rem;
+}
+
+.see-more {
+  text-align: center;
+}
+
+.see-more i {
+  width: 50%;
+}
+
+.see-more i:first-child {
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+.see-more i:last-child {
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+@media screen and (min-width: 601px) {
+  .report {
+    margin-bottom: 2rem;
+  }
+  .report div {
+    border-left: 1rem solid #dbdee9;
+    background-color: #e8eaf6;
+  }
+  .err404 h1 {
+    font-size: 10rem;
+  }
+  .err404 h2 {
+    font-size: 4rem;
+  }
+  .report::before {
+    left: 0;
+    transform: none;
+    width: 100%;
+    border: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .nav-wrapper a.brand-logo {
+    font-size: 1.75rem;
+    letter-spacing: -0.025rem;
+  }
+  .nav-wrapper .nav-btns li a.btn {
+    padding: 0 2rem;
+    line-height: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .report {
+    display: flex;
+    text-align: left;
+  }
   .cand-info {
     margin-top: 2rem;
   }
@@ -277,5 +376,11 @@ table tr:nth-child(even):hover i {
   }
   .nav-wrapper a.brand-logo img {
     max-height: 40px;
+  }
+  .err404 h1 {
+    font-size: 12rem;
+  }
+  .err404 h2 {
+    font-size: 5rem;
   }
 }
