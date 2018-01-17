@@ -88,7 +88,11 @@ class Reports extends React.Component {
 
         return (
             <div className="container">
-                <Search searchHandler={this.onSearchRequested} />
+                <div className="row">
+                    <div className="col s10 m6 l6 xl4 search">
+                        <Search searchHandler={this.onSearchRequested} />
+                    </div>
+                </div>
                 {!reports.length ? <ErrorMessage /> : reports.map((report, index) => {
                     return <ReportSingle key={index} report={report} handleReportId={this.handleReportId} handleReportDelete={this.deleteReport} />
                 })}

@@ -3,11 +3,16 @@ import { ErrorMessage } from '../common/ErrorMessage';
 import Candidate from './Candidate';
 
 export default class SelectCandidate extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleClick = (selectedCandidate) => {
+        const id = selectedCandidate.candidateId;
+        window.$(`.collection-item`).each((i, item) => {
+            let $item = window.$(item);
+            $item.removeClass("selected");
+            if ($item.attr("data-id") === id) {
+                $item.addClass("selected");
+            }
+        });
         this.props.handleSelectCandidate(selectedCandidate);
     }
 

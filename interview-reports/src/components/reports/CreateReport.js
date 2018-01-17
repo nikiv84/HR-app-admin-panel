@@ -52,9 +52,11 @@ export default class CreateReports extends React.Component {
     }
 
     nextStep = () => {
+        let step = this.state.step;
         if (this.state.isSelected) {
+            ++step;
             this.setState({
-                step: ++this.state.step
+                step
             })
         }
     }
@@ -78,6 +80,8 @@ export default class CreateReports extends React.Component {
             case 4:
                 currStep = <SelectCandidate />;
                 break;
+            default:
+                break;
         }
 
         return (
@@ -86,10 +90,16 @@ export default class CreateReports extends React.Component {
                     <div className="col s3 steps-container">
                         <CreateReportSteps step={this.state.step} />
                     </div>
-                    <div className="col s9 search-container">
-                        <Search searchHandler={this.onSearchRequested} />
+                    <div className="col s9">
+                        <div className="row btn-srch-cont">
+                            <div className="col s9 search">
+                                <Search searchHandler={this.onSearchRequested} />
+                            </div>
+                            <div className="col s3">
+                                <button type="button" className="waves-effect waves-light btn" onClick={this.nextStep}>Next</button>
+                            </div>
+                        </div>
                         {currStep}
-                        <button type="button" value="Next" onClick={this.nextStep}>Next</button>
                     </div>
                 </div>
             </div>
