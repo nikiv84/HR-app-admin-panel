@@ -7,7 +7,13 @@ export default class ReportSingle extends React.Component {
         const id = e.target.dataset.id;
         this.props.handleReportId(id);
     }
-    
+
+    handleClickDelete = (e) => {
+        const id = e.target.dataset.id;
+        this.props.handleReportDelete(id);
+    }
+
+
     render() {
         const { id, companyName, candidateName, interviewDate, status } = this.props.report;
         return (
@@ -30,9 +36,8 @@ export default class ReportSingle extends React.Component {
                         <p>Status</p>
                     </div>
                     <div className="col s12 m12 l2 see-more valign-wrapper">
-                    {/* <button onClick={this.handleClick} data-id={id} data-target="report-modal" className="btn modal-trigger">Modal</button> */}
                         <i onClick={this.handleClick} data-id={id} data-target="report-modal" className="modal-trigger material-icons">remove_red_eye</i>
-                        <i className="material-icons">close</i>
+                        <i onClick={this.handleClickDelete} data-id={id} className="material-icons">close</i>
                     </div>
                 </div>
             </div>

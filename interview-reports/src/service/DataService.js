@@ -16,6 +16,14 @@ class DataService {
             console.log(error);
         })
     }
+
+    deleteReport(id, responseHandler) {
+        commService.deleteRequest("reports", id, (response) => {
+            responseHandler(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
 }
 
 export const dataService = new DataService();

@@ -316,31 +316,98 @@ table tr:nth-child(even):hover i {
   padding-bottom: 2rem;
 }
 
-.see-more {
+.report .see-more {
   text-align: center;
+  padding: 0;
 }
 
-.see-more i {
+.report .see-more i {
+  z-index: 1000;
   width: 50%;
+  cursor: pointer;
+  padding: 1.25rem 0;
+  transition: all 0.15s ease;
+  background-color: transparent;
 }
 
-.see-more i:first-child {
+.report .see-more i:hover {
+  background-color: #dbdee9;
+  color: #f43f52;
+}
+
+.report .see-more i:first-child {
   text-align: right;
   padding-right: 0.5rem;
 }
 
-.see-more i:last-child {
+.report .see-more i:last-child {
   text-align: left;
   padding-left: 0.5rem;
+}
+
+.jconfirm.jconfirm-supervan .jconfirm-bg {
+  background-color: rgba(24, 28, 65, 0.95);
+}
+
+.jconfirm.jconfirm-supervan .jconfirm-box .jconfirm-buttons button {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.steps-container {
+  border-right: 0.3rem solid #1a237e;
+}
+
+.steps-container .steps {
+  padding-top: 1rem;
+  padding-right: 1rem;
+}
+
+.steps div {
+  margin-bottom: 1.5rem;
+}
+
+.steps h5, span {
+  display: block;
+}
+
+.steps h5 {
+  padding-left: 0.5rem;
+  font-size: 1.5rem;
+  text-align: right;
+}
+
+.step-num {
+  margin-left: auto;
+  text-align: center;
+  border-radius: 50%;
+  border: 0.3rem solid #1a237e;
+  width: 48px;
+  height: 48px;
+  line-height: 40px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.search-container .search {
+  float: right;
 }
 
 @media screen and (min-width: 601px) {
   .report {
     margin-bottom: 2rem;
+    -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.04), 0 3px 14px 2px rgba(0, 0, 0, 0.02), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.04), 0 3px 14px 2px rgba(0, 0, 0, 0.02), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
   }
   .report div {
-    border-left: 1rem solid #dbdee9;
     background-color: #e8eaf6;
+  }
+  .report .see-more {
+    border: 0.2rem solid #dbdee9;
+  }
+  .report .see-more i.material-icons {
+    padding: 1rem 0;
+    text-align: center;
   }
   .err404 h1 {
     font-size: 10rem;
@@ -367,12 +434,41 @@ table tr:nth-child(even):hover i {
     height: 36px;
     font-size: 1rem;
   }
+  .steps-container {
+    margin-top: 2rem;
+  }
+  .steps-container .steps {
+    padding-right: 0;
+  }
+  .steps h5, span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .steps h5 {
+    text-align: left;
+  }
 }
 
 @media screen and (min-width: 993px) {
+  .report div {
+    border-left: 1rem solid #dbdee9;
+  }
   .report {
     display: flex;
     text-align: left;
+  }
+  .report .see-more {
+    border: none;
+    padding: 0;
+    border-left: 1rem solid #dbdee9;
+  }
+  .report .see-more i:first-child {
+    text-align: right;
+    padding-right: 0.5rem;
+  }
+  .report .see-more i:last-child {
+    text-align: left;
+    padding-left: 0.5rem;
   }
   .cand-info {
     margin-top: 2rem;

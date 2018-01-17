@@ -15,6 +15,16 @@ class CommService {
             .catch(error => errorHandler(error));
     }
 
+    deleteRequest(url, id, deleteHandler, errorHandler) {
+
+        const requestUrl = `${BASE_URL}/${url}/${id}`;
+
+        axios.delete(requestUrl)
+            .then(response => deleteHandler(response))
+            .catch(error => errorHandler(error));
+    }
+
+
     // postRequest(url, data, postDataHandler, errorHandler) {
     //     const requestUrl = `${BASE_URL}/${url}`;
 
@@ -48,17 +58,6 @@ class CommService {
     //         });
     // }
 
-    // deleteRequest(url, deleteHandler, errorHandler) {
-
-    //     const requestUrl = `${BASE_URL}/${url}`;
-
-    //     axios.delete(requestUrl, {
-    //         headers: this.createHeaders()
-    //     })
-    //         .then(response => deleteHandler(response))
-    //         .catch(error => errorHandler(error));
-
-    // }
 
 
 }

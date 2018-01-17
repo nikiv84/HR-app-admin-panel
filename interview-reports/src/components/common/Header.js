@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../assets/img/logo.png';
+import NavLink from './NavLink';
 
 const Header = () => {
     return (
@@ -12,10 +13,10 @@ const Header = () => {
                                 <img src={logo} alt="logo" className="responsive-img m-align hide-on-small-only" />Reports Administration</a>
                             <ul className="right nav-btns">
                                 <li>
-                                    <a className="waves-effect waves-light btn indigo lighten-5 indigo-text active" href="index.html">Reports</a>
+                                    <NavLink to="/reports">Reports</NavLink>
                                 </li>
                                 <li>
-                                    <a className="waves-effect waves-light btn indigo lighten-5 indigo-text" href="index.html">Create report</a>
+                                    <NavLink to="/create-report">Create report</NavLink>
                                 </li>
                             </ul>
                         </div>
