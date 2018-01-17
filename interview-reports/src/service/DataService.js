@@ -1,5 +1,6 @@
 import { commService } from './CommService';
 import ReportDTO from '../dto/ReportDTO';
+import CandidateDTO from '../dto/CandidateDTO';
 
 class DataService {
     getReports(reportsHandler) {
@@ -12,6 +13,21 @@ class DataService {
                 reports.push(report);
             });
             reportsHandler(reports);
+        }, (error) => {
+            console.log(error);
+        })
+    }
+
+    getCandidates(candidatesHandler) {
+        const candidates = [];
+        commService.getRequest("candidates", (responseData) => {
+            const candidatesData = responseData.data;
+            candidatesData.forEach(singleCandidate => {
+                const { id, name, birthday, email, education, avatar } = singleCandidate;
+                const candidate = new CandidateDTO(id, name, birthday, email, education, avatar);
+                candidates.push(candidate);
+            });
+            candidatesHandler(candidates);
         }, (error) => {
             console.log(error);
         })

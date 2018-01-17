@@ -60,8 +60,7 @@ class Reports extends React.Component {
         })
     }
 
-    searchHandler = (searchString) => {
-
+    onSearchRequested = (searchString) => {
         const currentReports = this.state.reports;
 
         if (searchString === "") {
@@ -89,7 +88,7 @@ class Reports extends React.Component {
 
         return (
             <div className="container">
-                <Search onSearchRequested={this.searchHandler} />
+                <Search searchHandler={this.onSearchRequested} />
                 {!reports.length ? <ErrorMessage /> : reports.map((report, index) => {
                     return <ReportSingle key={index} report={report} handleReportId={this.handleReportId} handleReportDelete={this.deleteReport} />
                 })}
