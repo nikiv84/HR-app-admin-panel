@@ -1,4 +1,5 @@
 import React from 'react';
+import { dateMaxFormatter } from '../../assets/js/helpers';
 
 export default class FillReport extends React.Component {
     constructor(props) {
@@ -28,24 +29,27 @@ export default class FillReport extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const newReportData = { ...this.state }
-        let newDate =  new Date(newReportData.interviewDate) + "";
+        let newDate = new Date(newReportData.interviewDate) + "";
         newReportData.interviewDate = newDate;
         // console.log(reportData);
         this.props.handleCreateReport(newReportData);
     }
 
     render() {
+        const dateMax = dateMaxFormatter();
+
         return (
             <div className="row">
                 <form id="submit-report" className="col s12" onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col s12 m8 offset-m2 l4 input-field ">
-                            <input type="date" className="datepicker" id="datepicker" placeholder="Choose date" name="interviewDate"
-                                onChange={this.handleChange} value={this.state.interviewDate} />
+                            <input type="datetime-local" min="2016-01-01T00:00" max={dateMax}
+                                placeholder="Choose date" name="interviewDate"
+                                onChange={this.handleChange} value={this.state.interviewDate} required />
                             <label className="active">Interview date</label>
                         </div>
                         <div className="input-field col s12 m8 offset-m2 l4">
-                            <select onChange={this.handleChange} name="phase" value={this.state.phase}>
+                            <select onChange={this.handleChange} name="phase" value={this.state.phase} required>
                                 <option value="" defaultValue>Choose phase</option>
                                 <option value="cv">CV</option>
                                 <option value="hr">HR</option>
@@ -55,7 +59,7 @@ export default class FillReport extends React.Component {
                             <label>Phase</label>
                         </div>
                         <div className="input-field col s12 m8 offset-m2 l4">
-                            <select onChange={this.handleChange} value={this.state.status} name="status">
+                            <select onChange={this.handleChange} value={this.state.status} name="status" required>
                                 <option value="" defaultValue>Choose status</option>
                                 <option value="declined">Declined</option>
                                 <option value="passed">Passed</option>
@@ -65,8 +69,8 @@ export default class FillReport extends React.Component {
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <textarea id="textarea" className="materialize-textarea" data-length="120"
-                                onChange={this.handleChange} value={this.state.note} name="note"></textarea>
+                            <textarea id="textarea" className="materialize-textarea" data-length="120" name="note"
+                                onChange={this.handleChange} value={this.state.note} required></textarea>
                             <label htmlFor="textarea2">Note</label>
                         </div>
                     </div>
