@@ -17,7 +17,7 @@ class Reports extends React.Component {
                 reports,
                 filteredReports: reports
             })
-        })
+        });
     }
 
     handleReportId = (id) => {
@@ -30,7 +30,7 @@ class Reports extends React.Component {
         })
         this.setState({
             report
-        })
+        });
     }
 
     confirmMe = (deleteMehandler) => {
@@ -55,9 +55,8 @@ class Reports extends React.Component {
                 dataService.deleteReport(id, (response) => {
                     this.loadReports();
                 })
-
             }
-        })
+        });
     }
 
     onSearchRequested = (searchString) => {
@@ -83,12 +82,19 @@ class Reports extends React.Component {
 
 
     render() {
+        if (!this.state.reports.length) {
+            return <h4 className="center-align">Loading...</h4>
+        }
 
         const reports = this.state.filteredReports;
 
         return (
             <div className="container">
-                <Search searchHandler={this.onSearchRequested} />
+                <div className="row">
+                    <div className="col s10 m6 l6 xl4 search">
+                        <Search searchHandler={this.onSearchRequested} />
+                    </div>
+                </div>
                 {!reports.length ? <ErrorMessage /> : reports.map((report, index) => {
                     return <ReportSingle key={index} report={report} handleReportId={this.handleReportId} handleReportDelete={this.deleteReport} />
                 })}

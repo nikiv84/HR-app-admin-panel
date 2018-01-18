@@ -119,6 +119,10 @@ body {
   color: #1a237e !important;
 }
 
+.btn-srch-cont button {
+  float: right;
+}
+
 .shadow-overlay {
   z-index: -50;
   position: absolute;
@@ -227,7 +231,7 @@ body {
   border-bottom-left-radius: 0;
 }
 
-.nav-wrapper .nav-btns li a.btn.active {
+.nav-wrapper .nav-btns li a.btn.active, .btn-srch-cont button {
   background-color: #f43f52!important;
   color: #fff!important;
 }
@@ -390,15 +394,15 @@ table tr:nth-child(even):hover i {
   font-weight: 500;
 }
 
-.search-container .search {
-  float: right;
-}
-
-.collection.candidates {
+.collection.report-collection {
   border: none;
 }
 
-.collection.candidates .collection-item {
+.collection {
+  overflow: visible!important;
+}
+
+.collection.report-collection .collection-item {
   cursor: pointer;
   border: 1px solid #e0e0e0;
   margin-bottom: 1rem;
@@ -406,23 +410,55 @@ table tr:nth-child(even):hover i {
   justify-content: center;
   align-content: center;
   flex-direction: column;
-  transform: scale(0.97);
+  transform: scale(1);
   transition: all 0.2s ease-in-out;
   box-shadow: none;
 }
 
-.collection.candidates .collection-item:hover {
-  transform: scale(1);
+.collection.report-collection .collection-item:hover {
+  transform: scale(1.02);
   -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.04), 0 3px 14px 2px rgba(0, 0, 0, 0.02), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.04), 0 3px 14px 2px rgba(0, 0, 0, 0.02), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
 }
 
-.collection.candidates .collection-item p {
+.collection.report-collection .collection-item p {
   font-size: 0.9rem;
 }
 
 .steps div.active-step {
   opacity: 1;
+}
+
+.collection-item.selected {
+  background-color: #1a237e;
+  color: #fff;
+}
+
+.report-btns button {
+  box-shadow: none;
+}
+
+.report-btns button.prev-btn {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.report-btns button.next-btn {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+#datepicker::placeholder {
+  opacity: 1;
+  color: black;
+}
+
+button.btn.submit {
+  float: right;
+}
+
+form#submit-report {
+  padding: 0 1.5rem;
 }
 
 @media screen and (min-width: 601px) {
@@ -479,10 +515,14 @@ table tr:nth-child(even):hover i {
   .steps h5 {
     text-align: left;
   }
+  .btn-srch-cont {
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media screen and (min-width: 993px) {
-  .collection.candidates .collection-item p {
+  .collection.report-collection .collection-item p {
     font-size: 0.75rem;
   }
   .report div {
@@ -505,6 +545,13 @@ table tr:nth-child(even):hover i {
     text-align: left;
     padding-left: 0.5rem;
   }
+  .see-more.valign-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+  .report .see-more.valign-wrapper i {
+    line-height: 3;
+  }
   .cand-info {
     margin-top: 2rem;
   }
@@ -526,7 +573,10 @@ table tr:nth-child(even):hover i {
 }
 
 @media screen and (min-width: 1201px) {
-  .collection.candidates .collection-item p {
+  .collection.report-collection .collection-item p {
     font-size: 0.95rem;
+  }
+  .report .see-more.valign-wrapper i {
+    text-align: center;
   }
 }

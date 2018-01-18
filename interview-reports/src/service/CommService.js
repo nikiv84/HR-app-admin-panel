@@ -25,20 +25,17 @@ class CommService {
     }
 
 
-    // postRequest(url, data, postDataHandler, errorHandler) {
-    //     const requestUrl = `${BASE_URL}/${url}`;
+    postRequest(url, data, postDataHandler, errorHandler) {
+        const requestUrl = `${BASE_URL}/${url}`;
 
-
-    //     axios({
-    //         method: "POST",
-    //         url: requestUrl,
-    //         data: data
-    //     })
-    //         .then(result => {
-    //             return postDataHandler(result);
-    //         })
-    //         .catch((error) => errorHandler(error));
-    // }
+        axios({
+            method: "POST",
+            url: requestUrl,
+            data
+        })
+            .then(result => postDataHandler(result))
+            .catch((error) => errorHandler(error));
+    }
 
     // putRequest(url, data, putDataHandler, putErrorHandler) {
     //     const requestUrl = `${BASE_URL}/${url}`;
