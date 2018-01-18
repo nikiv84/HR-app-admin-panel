@@ -1,17 +1,22 @@
 import React from 'react';
-import { dateMaxFormatter } from '../../assets/js/helpers';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import { validationService } from '../../service/ValidationService';
+import PropTypes from 'prop-types';
 
 export default class FillReport extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             interviewDate: moment(),
-            phase: "",
-            status: "",
-            note: ""
+            newReportData: {
+                interviewDate: moment(),
+                phase: "",
+                status: "",
+                note: ""
+            },
+            errors: {}
         };
     }
 
@@ -25,43 +30,58 @@ export default class FillReport extends React.Component {
     handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        this.setState({ [name]: value });
+        const newReportData = { ...this.state.newReportData };
+        newReportData[name] = value;
+        this.setState({ newReportData });
     }
 
     handleDateChange = (date) => {
+        const newReportData = { ...this.state.newReportData };
+        newReportData.interviewDate = date;
         this.setState({
-            interviewDate: date
+            newReportData
         })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const newReportData = { ...this.state };
-        const format = 'L';
-        const momentDate = newReportData.interviewDate.format(format);
-        newReportData.interviewDate = (new Date(momentDate)).toString();
-        this.props.handleCreateReport(newReportData);
+        const newReportData = { ...this.state.newReportData };
+        const errors = validationService.isFormVaild(newReportData);
+        this.setState({
+            errors
+        })
+        if (errors.formValid) {
+            const format = 'LLL';
+            const momentDate = newReportData.interviewDate.format(format);
+            newReportData.interviewDate = (new Date(momentDate)).toString();
+            console.log(newReportData);
+            this.props.handleCreateReport(newReportData);
+        }
     }
 
     render() {
-        const dateMax = dateMaxFormatter();
-
         return (
             <div className="row">
                 <form id="submit-report" className="col s12" onSubmit={this.handleSubmit}>
                     <div className="row">
-                        <div className="col s12 m8 offset-m2 l4 input-field ">
+                        <div className="col s12 l8 offset-l2 xl6 offset-xl3 input-field">
                             <DatePicker
-                                selected={this.state.interviewDate}
+                                selected={this.state.newReportData.interviewDate}
                                 onChange={this.handleDateChange}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                dateFormat="LLL"
+                                minDate={moment().subtract(1, "years")}
+                                maxDate={moment()}
                             />
-                            {/* <input type="date" min="2016-01-01T00:00" max={dateMax}
-                                placeholder="Choose date" name="interviewDate"
-                                onChange={this.handleChange} value={this.state.interviewDate} required /> */}
                             <label className="active">Interview date</label>
+                            <p id="error">{this.state.errors.allFields ? `${this.state.errors.allFields.interviewDate}` : ""}</p>
                         </div>
-                        <div className="input-field col s12 m8 offset-m2 l4">
-                            <select onChange={this.handleChange} name="phase" value={this.state.phase} required>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12 l6">
+                            <select onChange={this.handleChange} name="phase" value={this.state.newReportData.phase} >
                                 <option value="" defaultValue>Choose phase</option>
                                 <option value="cv">CV</option>
                                 <option value="hr">HR</option>
@@ -69,21 +89,24 @@ export default class FillReport extends React.Component {
                                 <option value="final">Final</option>
                             </select>
                             <label>Phase</label>
+                            <p id="error">{this.state.errors.allFields ? `${this.state.errors.allFields.phase}` : ""}</p>
                         </div>
-                        <div className="input-field col s12 m8 offset-m2 l4">
-                            <select onChange={this.handleChange} value={this.state.status} name="status" required>
+                        <div className="input-field col s12 l6">
+                            <select onChange={this.handleChange} value={this.state.newReportData.status} name="status" >
                                 <option value="" defaultValue>Choose status</option>
                                 <option value="declined">Declined</option>
                                 <option value="passed">Passed</option>
                             </select>
                             <label>Status</label>
+                            <p id="error">{this.state.errors.allFields ? `${this.state.errors.allFields.status}` : ""}</p>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
                             <textarea id="textarea" className="materialize-textarea" data-length="120" name="note"
-                                onChange={this.handleChange} value={this.state.note} required></textarea>
+                                onChange={this.handleChange} value={this.state.newReportData.note} ></textarea>
                             <label htmlFor="textarea2">Note</label>
+                            <p id="error">{this.state.errors.allFields ? `${this.state.errors.allFields.note}` : ""}</p>
                         </div>
                     </div>
                     <div className="row">
@@ -93,4 +116,8 @@ export default class FillReport extends React.Component {
             </div>
         )
     }
+}
+
+FillReport.propTypes = {
+    handleCreateReport: PropTypes.func
 }

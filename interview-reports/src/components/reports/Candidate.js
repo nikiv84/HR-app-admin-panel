@@ -1,5 +1,6 @@
 import React from 'react';
 import avatarimg from '../../assets/img/avatar.png';
+import PropTypes from 'prop-types';
 
 export default class Candidate extends React.Component {
     constructor(props) {
@@ -35,4 +36,9 @@ export default class Candidate extends React.Component {
             </div>
         )
     }
+}
+
+Candidate.propTypes = {
+    candidate: PropTypes.object,
+    handleClick: PropTypes.func
 }

@@ -224,6 +224,8 @@ footer p {
 
 footer.page-footer {
   height: 150px;
+  max-height: 150px;
+  overflow: hidden;
 }
 
 .nav-wrapper .brand-logo img, footer .brand-logo img {
@@ -477,6 +479,33 @@ button.btn.submit {
 
 form#submit-report {
   padding: 0 1.5rem;
+}
+
+#submit-report .react-datepicker-popper {
+  z-index: 1000;
+}
+
+#submit-report .react-datepicker-wrapper {
+  display: block;
+}
+
+#submit-report .react-datepicker-wrapper .react-datepicker__input-container {
+  width: 100%;
+}
+
+body .hiddendiv.common {
+  display: none;
+}
+
+#error {
+  color: #fd2d2d;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 480px) {
+  .hide-on-xsmall-only {
+    display: none!important;
+  }
 }
 
 @media screen and (min-width: 601px) {

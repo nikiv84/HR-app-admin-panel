@@ -1,6 +1,7 @@
 import React from 'react';
 import { ErrorMessage } from '../common/ErrorMessage';
 import Candidate from './Candidate';
+import PropTypes from 'prop-types';
 
 export default class SelectCandidate extends React.Component {
 
@@ -35,4 +36,9 @@ export default class SelectCandidate extends React.Component {
             </div>
         )
     }
+}
+
+SelectCandidate.propTypes = {
+    candidates: PropTypes.array,
+    handleSelectCandidate: PropTypes.func
 }

@@ -7,8 +7,6 @@ import SelectCandidate from './SelectCandidate';
 import SelectCompany from './SelectCompany';
 import FillReport from './FillReport';
 
-
-
 export default class CreateReports extends React.Component {
     constructor(props) {
         super(props);
@@ -176,13 +174,13 @@ export default class CreateReports extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col s3 steps-container">
+                    <div className="col s4 m3 steps-container">
                         <CreateReportSteps step={this.state.step} report={this.state.newReport} />
                     </div>
-                    <div className="col s9">
+                    <div className="col s8 m9">
                         <div className="row btn-srch-cont">
                             {searchComp}
-                            <div className="col s12 report-btns">
+                            <div className="col s12 report-btns input-field">
                                 {this.state.step !== 3 ? <button type="button" className={nextbtnClasses} onClick={this.nextStep}>Next</button> : ""}
 
                                 {this.state.step !== 1 ? <button type="button" className="waves-effect waves-light btn indigo darken-4 prev-btn"

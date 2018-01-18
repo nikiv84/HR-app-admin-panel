@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const CreateReportSteps = (props) => {
     const allClasses = "col s12";
@@ -36,4 +37,9 @@ export const CreateReportSteps = (props) => {
             </div>
         </div>
     )
+}
+
+CreateReportSteps.propTypes = {
+    report: PropTypes.object,
+    step: PropTypes.number
 }

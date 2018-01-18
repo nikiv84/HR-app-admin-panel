@@ -1,5 +1,6 @@
 import React from 'react';
 import { dateFormatter, ucFirst } from '../../assets/js/helpers';
+import PropTypes from 'prop-types';
 
 export default class Modal extends React.Component {
     constructor(props) {
@@ -51,4 +52,8 @@ export default class Modal extends React.Component {
             </div>
         )
     }
+}
+
+Modal.propTypes = {
+    report: PropTypes.object
 }

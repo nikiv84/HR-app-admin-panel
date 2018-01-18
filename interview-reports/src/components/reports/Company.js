@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Company extends React.Component {
     constructor(props) {
@@ -31,4 +32,9 @@ export default class Company extends React.Component {
             </div>
         )
     }
+}
+
+Company.propTypes = {
+    company: PropTypes.object,
+    handleClick: PropTypes.func
 }

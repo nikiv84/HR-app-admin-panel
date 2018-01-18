@@ -1,5 +1,6 @@
 import React from 'react';
 import { dateFormatter, ucFirst } from '../../assets/js/helpers';
+import PropTypes from 'prop-types';
 
 export default class ReportSingle extends React.Component {
 
@@ -43,4 +44,10 @@ export default class ReportSingle extends React.Component {
             </div>
         )
     }
+}
+
+ReportSingle.propTypes = {
+    handleReportId: PropTypes.func,
+    handleReportDelete: PropTypes.func,
+    report: PropTypes.object
 }

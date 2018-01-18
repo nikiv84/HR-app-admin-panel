@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Search extends React.Component {
     constructor(props) {
@@ -23,4 +24,8 @@ export default class Search extends React.Component {
             </div>
         )
     }
+}
+
+Search.propTypes = {
+    searchHandler: PropTypes.func
 }

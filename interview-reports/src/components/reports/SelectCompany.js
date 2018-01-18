@@ -1,6 +1,7 @@
 import React from 'react';
 import { ErrorMessage } from '../common/ErrorMessage';
 import Company from './Company';
+import PropTypes from 'prop-types';
 
 export default class SelectCompany extends React.Component {
 
@@ -35,4 +36,9 @@ export default class SelectCompany extends React.Component {
             </div>
         )
     }
+}
+
+SelectCompany.propTypes = {
+    companies: PropTypes.array,
+    handleSelectCompany: PropTypes.func
 }

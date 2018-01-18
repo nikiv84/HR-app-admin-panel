@@ -15,23 +15,6 @@ export function dateFormatter(dateData) {
     return `${dd}.${mm}.${yyyy}.`;
 }
 
-export function dateMaxFormatter() {
-    var date = new Date();
-
-    var dd = date.getDate();
-    var mm = date.getMonth() + 1;
-    var yyyy = date.getFullYear();
-
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-
-    return `${yyyy}-${mm}-${dd}T23:59`;
-}
-
 export function ucFirst(string) {
     if (typeof string !== 'string') return '';
     return string.charAt(0).toUpperCase() + string.substr(1);
