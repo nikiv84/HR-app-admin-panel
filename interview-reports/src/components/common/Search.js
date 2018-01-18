@@ -14,11 +14,12 @@ export default class Search extends React.Component {
 
     render() {
         return (
-
-            <div className="input-field">
-                <i className="material-icons prefix valign">search</i>
-                <input id="search" type="text" className="validate" value={this.state.searchString} onChange={this.onInputChange} />
-                <label htmlFor="search">Search</label>
+            <div className="col s12 search">
+                <div className="input-field">
+                    <i className="material-icons prefix valign">search</i>
+                    <input id="search" type="text" className="validate" value={this.state.searchString} onChange={this.onInputChange} />
+                    <label htmlFor="search">Search</label>
+                </div>
             </div>
         )
     }

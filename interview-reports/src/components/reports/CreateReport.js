@@ -1,10 +1,13 @@
 import React from 'react';
 import Search from '../common/Search';
 import { dataService } from '../../service/DataService';
+import { redirectService } from '../../service/RedirectService';
 import { CreateReportSteps } from './CreateReportSteps';
 import SelectCandidate from './SelectCandidate';
-import { SelectCompany } from './SelectCompany';
-import { FillReport } from './FillReport';
+import SelectCompany from './SelectCompany';
+import FillReport from './FillReport';
+
+
 
 export default class CreateReports extends React.Component {
     constructor(props) {
@@ -13,25 +16,45 @@ export default class CreateReports extends React.Component {
             step: 1,
             candidates: [],
             filteredCandidates: [],
+            companies: [],
+            filteredCompanies: [],
             newReport: {},
-            isSelected: false
+            isSelected: false,
+            resetSearch: false
         };
     }
 
+    componentDidMount() {
+        this.loadCandidates();
+        this.loadCompanies();
+    }
+
+
     onSearchRequested = (searchString) => {
         const currentCandidates = this.state.candidates;
+        const currentCompanies = this.state.companies;
 
         if (searchString === "") {
             this.setState({ filteredCandidates: currentCandidates });
+            this.setState({ filteredCompanies: currentCompanies });
         }
+        if (this.state.step === 1) {
+            const filteredList = currentCandidates.filter((candidate) => {
+                const candName = candidate.name.toLowerCase();
+                const searchStringLower = searchString.toLowerCase();
+                return candName.includes(searchStringLower);
+            });
 
-        const filteredList = currentCandidates.filter((candidate) => {
-            const candName = candidate.name.toLowerCase();
-            const searchStringLower = searchString.toLowerCase();
-            return candName.includes(searchStringLower);
-        });
+            this.setState({ filteredCandidates: filteredList });
+        } else if (this.state.step === 2) {
+            const filteredList = currentCompanies.filter((company) => {
+                const compName = company.name.toLowerCase();
+                const searchStringLower = searchString.toLowerCase();
+                return compName.includes(searchStringLower);
+            });
 
-        this.setState({ filteredCandidates: filteredList });
+            this.setState({ filteredCompanies: filteredList });
+        }
     }
 
     handleSelectCandidate = (selectedCandidate) => {
@@ -40,6 +63,42 @@ export default class CreateReports extends React.Component {
             newReport,
             isSelected: true
         })
+    }
+
+    handleSelectCompany = (selectCompany) => {
+        const newReport = this.state.newReport;
+        newReport.companyId = selectCompany.companyId;
+        newReport.companyName = selectCompany.companyName;
+        this.setState({
+            newReport,
+            isSelected: true
+        })
+    }
+
+    handleCreateReport = (newReportData) => {
+        const newReport = { ...this.state.newReport, ...newReportData }
+        dataService.createReport(newReport, (response) => {
+            if (response.statusText === "Created") {
+                this.alertMe((ok) => {
+                    if (ok) {
+                        redirectService.redirectTo("/reports");
+                    }
+                });
+            }
+        })
+    }
+
+    alertMe = (confirMeHandler) => {
+        return window.$.alert({
+            theme: 'supervan',
+            title: 'Success!',
+            content: 'Report created successfully!',
+            buttons: {
+                ok: function () {
+                    confirMeHandler(true);
+                }
+            }
+        });
     }
 
     loadCandidates = () => {
@@ -51,34 +110,66 @@ export default class CreateReports extends React.Component {
         })
     }
 
+    loadCompanies = () => {
+        dataService.getCompanies(companies => {
+            this.setState({
+                companies,
+                filteredCompanies: companies
+            })
+        })
+    }
+
     nextStep = () => {
         let step = this.state.step;
+
         if (this.state.isSelected) {
             ++step;
             this.setState({
-                step
+                step,
+                isSelected: false
             })
         }
     }
 
-    componentDidMount() {
-        this.loadCandidates();
+    prevStep = () => {
+        let step = this.state.step;
+        let newReport = this.state.newReport;
+
+        --step;
+        switch (step) {
+            case 1:
+                newReport = {};
+                break;
+            case 2:
+                newReport.companyId = null;
+                newReport.companyName = null;
+                break;
+            default:
+                break;
+        }
+        this.setState({
+            step,
+            newReport,
+            isSelected: false
+        })
     }
+
 
     render() {
         let currStep;
+        let searchComp = <Search searchHandler={this.onSearchRequested} />;
+        let nextbtnClasses = "waves-effect waves-light btn";
         switch (this.state.step) {
             case 1:
                 currStep = <SelectCandidate candidates={this.state.filteredCandidates} handleSelectCandidate={this.handleSelectCandidate} />;
                 break;
             case 2:
-                currStep = <SelectCompany />;
+                nextbtnClasses += " next-btn"
+                currStep = <SelectCompany companies={this.state.filteredCompanies} handleSelectCompany={this.handleSelectCompany} />;
                 break;
             case 3:
-                currStep = <FillReport />;
-                break;
-            case 4:
-                currStep = <SelectCandidate />;
+                searchComp = "";
+                currStep = <FillReport handleCreateReport={this.handleCreateReport} />;
                 break;
             default:
                 break;
@@ -88,15 +179,14 @@ export default class CreateReports extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col s3 steps-container">
-                        <CreateReportSteps step={this.state.step} />
+                        <CreateReportSteps step={this.state.step} report={this.state.newReport} />
                     </div>
                     <div className="col s9">
                         <div className="row btn-srch-cont">
-                            <div className="col s9 search">
-                                <Search searchHandler={this.onSearchRequested} />
-                            </div>
-                            <div className="col s3">
-                                <button type="button" className="waves-effect waves-light btn" onClick={this.nextStep}>Next</button>
+                            {searchComp}
+                            <div className="col s12 report-btns">
+                                {this.state.step !== 3 ? <button type="button" className={nextbtnClasses} onClick={this.nextStep}>Next</button> : ""}
+                                {this.state.step !== 1 ? <button type="button" className="waves-effect waves-light btn indigo darken-4 indigo-text prev-btn" onClick={this.prevStep}>Previous</button> : ""}
                             </div>
                         </div>
                         {currStep}
@@ -106,3 +196,4 @@ export default class CreateReports extends React.Component {
         )
     }
 }
+

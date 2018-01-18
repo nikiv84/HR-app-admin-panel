@@ -14,7 +14,7 @@ export default class Candidate extends React.Component {
         const candidateId = e.target.dataset.id;
         const candidateName = e.target.dataset.name;
         const selectedCandidate = {
-            "candidateId": candidateId,
+            "candidateId": parseFloat(candidateId),
             "candidateName": candidateName
         }
         this.props.handleClick(selectedCandidate);

@@ -17,7 +17,7 @@ class Reports extends React.Component {
                 reports,
                 filteredReports: reports
             })
-        })
+        });
     }
 
     handleReportId = (id) => {
@@ -30,7 +30,7 @@ class Reports extends React.Component {
         })
         this.setState({
             report
-        })
+        });
     }
 
     confirmMe = (deleteMehandler) => {
@@ -55,9 +55,8 @@ class Reports extends React.Component {
                 dataService.deleteReport(id, (response) => {
                     this.loadReports();
                 })
-
             }
-        })
+        });
     }
 
     onSearchRequested = (searchString) => {
@@ -83,6 +82,9 @@ class Reports extends React.Component {
 
 
     render() {
+        if (!this.state.reports.length) {
+            return <h4 className="center-align">Loading...</h4>
+        }
 
         const reports = this.state.filteredReports;
 
