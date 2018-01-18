@@ -14,6 +14,10 @@ body {
   display: table;
 }
 
+.wrapper {
+  min-height: calc(100vh - 150px);
+}
+
 .m-align {
   vertical-align: middle;
 }
@@ -201,14 +205,28 @@ body {
   width: 100%;
 }
 
-.nav-wrapper a.brand-logo {
+.nav-wrapper .brand-logo, footer .brand-logo {
   font-family: 'Share Tech Mono', monospace;
   position: initial;
   font-size: 1.3rem;
   letter-spacing: -0.05rem;
+  color: #fff;
 }
 
-.nav-wrapper a.brand-logo img {
+footer .brand-logo {
+  font-size: 1.2rem;
+  letter-spacing: -0.1rem;
+}
+
+footer p {
+  height: 2rem;
+}
+
+footer.page-footer {
+  height: 150px;
+}
+
+.nav-wrapper .brand-logo img, footer .brand-logo img {
   margin-right: 1rem;
   max-height: 32px;
 }
@@ -489,10 +507,14 @@ form#submit-report {
     width: 100%;
     border: none;
   }
+  footer .brand-logo {
+    font-size: 1.75rem;
+    letter-spacing: 0;
+  }
 }
 
 @media screen and (min-width: 769px) {
-  .nav-wrapper a.brand-logo {
+  .nav-wrapper .brand-logo {
     font-size: 1.75rem;
     letter-spacing: -0.025rem;
   }
@@ -561,7 +583,7 @@ form#submit-report {
   .nav-wrapper h1 a.brand-logo {
     font-size: 2.5rem;
   }
-  .nav-wrapper a.brand-logo img {
+  .nav-wrapper .brand-logo img {
     max-height: 40px;
   }
   .err404 h1 {
