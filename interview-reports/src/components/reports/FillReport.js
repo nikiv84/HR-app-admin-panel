@@ -1,11 +1,14 @@
 import React from 'react';
 import { dateMaxFormatter } from '../../assets/js/helpers';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default class FillReport extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            interviewDate: "",
+            interviewDate: moment(),
             phase: "",
             status: "",
             note: ""
@@ -22,16 +25,21 @@ export default class FillReport extends React.Component {
     handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        console.log(name, value);
         this.setState({ [name]: value });
+    }
+
+    handleDateChange = (date) => {
+        this.setState({
+            interviewDate: date
+        })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const newReportData = { ...this.state }
-        let newDate = new Date(newReportData.interviewDate) + "";
-        newReportData.interviewDate = newDate;
-        // console.log(reportData);
+        const newReportData = { ...this.state };
+        const format = 'L';
+        const momentDate = newReportData.interviewDate.format(format);
+        newReportData.interviewDate = (new Date(momentDate)).toString();
         this.props.handleCreateReport(newReportData);
     }
 
@@ -43,9 +51,13 @@ export default class FillReport extends React.Component {
                 <form id="submit-report" className="col s12" onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col s12 m8 offset-m2 l4 input-field ">
-                            <input type="datetime-local" min="2016-01-01T00:00" max={dateMax}
+                            <DatePicker
+                                selected={this.state.interviewDate}
+                                onChange={this.handleDateChange}
+                            />
+                            {/* <input type="date" min="2016-01-01T00:00" max={dateMax}
                                 placeholder="Choose date" name="interviewDate"
-                                onChange={this.handleChange} value={this.state.interviewDate} required />
+                                onChange={this.handleChange} value={this.state.interviewDate} required /> */}
                             <label className="active">Interview date</label>
                         </div>
                         <div className="input-field col s12 m8 offset-m2 l4">

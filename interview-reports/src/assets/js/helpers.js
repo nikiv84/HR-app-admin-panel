@@ -12,7 +12,7 @@ export function dateFormatter(dateData) {
         mm = '0' + mm;
     }
 
-    return dd + '.' + mm + '.' + yyyy + '.';
+    return `${dd}.${mm}.${yyyy}.`;
 }
 
 export function dateMaxFormatter() {
@@ -29,10 +29,10 @@ export function dateMaxFormatter() {
         mm = '0' + mm;
     }
 
-    return yyyy + '-' + mm + '-' + dd + 'T23:59';
+    return `${yyyy}-${mm}-${dd}T23:59`;
 }
 
 export function ucFirst(string) {
-    if (typeof string !== "string") return "";
+    if (typeof string !== 'string') return '';
     return string.charAt(0).toUpperCase() + string.substr(1);
 }

@@ -29,7 +29,6 @@ export default class CreateReports extends React.Component {
         this.loadCompanies();
     }
 
-
     onSearchRequested = (searchString) => {
         const currentCandidates = this.state.candidates;
         const currentCompanies = this.state.companies;
@@ -58,7 +57,7 @@ export default class CreateReports extends React.Component {
     }
 
     handleSelectCandidate = (selectedCandidate) => {
-        const newReport = selectedCandidate;
+        const newReport = { ...selectedCandidate };
         this.setState({
             newReport,
             isSelected: true
@@ -66,9 +65,7 @@ export default class CreateReports extends React.Component {
     }
 
     handleSelectCompany = (selectCompany) => {
-        const newReport = this.state.newReport;
-        newReport.companyId = selectCompany.companyId;
-        newReport.companyName = selectCompany.companyName;
+        const newReport = { ...this.state.newReport, ...selectCompany };
         this.setState({
             newReport,
             isSelected: true
@@ -159,6 +156,7 @@ export default class CreateReports extends React.Component {
         let currStep;
         let searchComp = <Search searchHandler={this.onSearchRequested} />;
         let nextbtnClasses = "waves-effect waves-light btn";
+
         switch (this.state.step) {
             case 1:
                 currStep = <SelectCandidate candidates={this.state.filteredCandidates} handleSelectCandidate={this.handleSelectCandidate} />;
@@ -186,7 +184,9 @@ export default class CreateReports extends React.Component {
                             {searchComp}
                             <div className="col s12 report-btns">
                                 {this.state.step !== 3 ? <button type="button" className={nextbtnClasses} onClick={this.nextStep}>Next</button> : ""}
-                                {this.state.step !== 1 ? <button type="button" className="waves-effect waves-light btn indigo darken-4 indigo-text prev-btn" onClick={this.prevStep}>Previous</button> : ""}
+
+                                {this.state.step !== 1 ? <button type="button" className="waves-effect waves-light btn indigo darken-4 prev-btn"
+                                    onClick={this.prevStep}>Previous</button> : ""}
                             </div>
                         </div>
                         {currStep}
