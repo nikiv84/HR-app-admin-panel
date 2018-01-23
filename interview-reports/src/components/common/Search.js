@@ -12,18 +12,24 @@ export default class Search extends React.Component {
         this.setState({ searchString });
         this.props.searchHandler(searchString);
     }
-
-    componentWillReceiveProps(nextProps) {
-        if ((this.props.step !== nextProps.step)) {
+    
+    componentDidUpdate(prevProps) {
+        if ((this.props.step !== prevProps.step)) {
+            const searchString = "";
             this.setState({
-                searchString: ""
+                searchString
             })
+            this.props.searchHandler(searchString);
         }
     }
 
     render() {
+        let allClasses = "col s12 search";
+        if (this.props.step === 3) {
+            allClasses += " hideme";
+        }
         return (
-            <div className="col s12 search">
+            <div className={allClasses}>
                 <div className="input-field">
                     <i className="material-icons prefix valign">search</i>
                     <input id="search" type="text" className="validate" value={this.state.searchString} onChange={this.onInputChange} />

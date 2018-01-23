@@ -18,6 +18,10 @@ body {
   min-height: calc(100vh - 170px);
 }
 
+.hideme {
+  display: none!important;
+}
+
 .m-align {
   vertical-align: middle;
 }

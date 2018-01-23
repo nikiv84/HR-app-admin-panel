@@ -151,7 +151,6 @@ export default class CreateReports extends React.Component {
 
     render() {
         let currStep;
-        let searchComp = <Search searchHandler={this.onSearchRequested} step={this.state.step} />;
         let nextbtnClasses = "waves-effect waves-light btn";
 
         switch (this.state.step) {
@@ -163,7 +162,6 @@ export default class CreateReports extends React.Component {
                 currStep = <SelectCompany companies={this.state.filteredCompanies} handleSelectCompany={this.handleSelectCompany} />;
                 break;
             case 3:
-                searchComp = "";
                 currStep = <FillReport handleCreateReport={this.handleCreateReport} />;
                 break;
             default:
@@ -178,7 +176,7 @@ export default class CreateReports extends React.Component {
                     </div>
                     <div className="col s8 m9">
                         <div className="row btn-srch-cont">
-                            {searchComp}
+                            <Search searchHandler={this.onSearchRequested} step={this.state.step} />
                             <div className="col s12 report-btns input-field">
                                 {this.state.step !== 3 ? <button type="button" className={nextbtnClasses} onClick={this.nextStep}>Next</button> : ""}
 
