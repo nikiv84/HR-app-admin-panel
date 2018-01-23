@@ -13,6 +13,14 @@ export default class Search extends React.Component {
         this.props.searchHandler(searchString);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if ((this.props.step !== nextProps.step)) {
+            this.setState({
+                searchString: ""
+            })
+        }
+    }
+
     render() {
         return (
             <div className="col s12 search">

@@ -17,8 +17,7 @@ export default class CreateReports extends React.Component {
             companies: [],
             filteredCompanies: [],
             newReport: {},
-            isSelected: false,
-            resetSearch: false
+            isSelected: false
         };
     }
 
@@ -152,7 +151,7 @@ export default class CreateReports extends React.Component {
 
     render() {
         let currStep;
-        let searchComp = <Search searchHandler={this.onSearchRequested} />;
+        let searchComp = <Search searchHandler={this.onSearchRequested} step={this.state.step} />;
         let nextbtnClasses = "waves-effect waves-light btn";
 
         switch (this.state.step) {
