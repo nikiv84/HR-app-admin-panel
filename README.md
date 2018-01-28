@@ -6,7 +6,7 @@ A responsive administrative panel for HR web application, responsible for creati
 ![No more Tabs](/src/assets/img/logo_text.png)
 
 
-DEMO : [HR Job Tracking app - admin panel](https://nikolicivan.com/HR-admin/) 
+DEMO : [HR Job Tracking app - admin panel](http://hr-admin.nikolicivan.com) 
 
 
 # Showcasing 
