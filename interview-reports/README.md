@@ -21,10 +21,10 @@ DEMO : [HR Job Tracking app - admin panel](https://nikolicivan.com/HR-admin/)
 
 # Stack
 
-    Language:   HTML5, CSS3, JS(ES6)
-    Framework:  React, jQuery, MaterializeCSS
-	Created with: [Create React App](https://github.com/facebook/create-react-app)
-    Deployment: Surge
+    -   Language:   HTML5, CSS3, JS(ES6)
+    -   Framework:  React, jQuery, MaterializeCSS
+    -   Created with: [Create React App](https://github.com/facebook/create-react-app)
+    -   Deployment: Surge
 
 ## Author
 
