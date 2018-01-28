@@ -3,7 +3,7 @@
 A responsive administrative panel for HR web application, responsible for creating/modifying/deleting Interview Reports.
 
 
-![No more Tabs](/src/assets/img/logo_text.png)
+![No more Tabs](/interview-reports/src/assets/img/logo_text.png)
 
 
 DEMO : [HR Job Tracking app - admin panel](https://nikolicivan.com/HR-admin/) 
