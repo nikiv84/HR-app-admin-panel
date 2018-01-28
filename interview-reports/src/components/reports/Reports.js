@@ -33,7 +33,7 @@ class Reports extends React.Component {
         });
     }
 
-    confirmMe = (deleteMehandler) => {
+    confirmDeletion = (deleteMehandler) => {
         return window.$.confirm({
             theme: 'supervan',
             title: 'Are you sure?',
@@ -50,9 +50,10 @@ class Reports extends React.Component {
     }
 
     deleteReport = (id) => {
-        this.confirmMe((yesno) => {
-            if (yesno) {
+        this.confirmDeletion((yes) => {
+            if (yes) {
                 dataService.deleteReport(id, (response) => {
+                    console.log(response);
                     this.loadReports();
                 })
             }

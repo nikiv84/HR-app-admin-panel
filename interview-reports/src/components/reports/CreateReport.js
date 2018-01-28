@@ -72,8 +72,9 @@ export default class CreateReports extends React.Component {
     handleCreateReport = (newReportData) => {
         const newReport = { ...this.state.newReport, ...newReportData }
         dataService.createReport(newReport, (response) => {
+            let responseData = { ...response.data };
             if (response.statusText === "Created") {
-                this.alertMe((ok) => {
+                this.alertMe(responseData, (ok) => {
                     if (ok) {
                         redirectService.redirectTo("/reports");
                     }
@@ -82,11 +83,13 @@ export default class CreateReports extends React.Component {
         })
     }
 
-    alertMe = (confirMeHandler) => {
+    alertMe = (responseData, confirMeHandler) => {
+        const { candidateName, companyName, interviewDate, note, phase, status } = responseData;
         return window.$.alert({
             theme: 'supervan',
             title: 'Success!',
-            content: 'Report created successfully!',
+            content: `Report created successfully!<br><br>Name: ${candidateName},<br>Company Name: ${companyName},
+                    <br>Interview Date: ${(new Date(interviewDate)).toLocaleDateString()},<br>Phase: ${phase.toUpperCase()},<br>Status: ${status}<br>Note: ${note}`,
             buttons: {
                 ok: function () {
                     confirMeHandler(true);

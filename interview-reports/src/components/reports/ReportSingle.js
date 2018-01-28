@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default class ReportSingle extends React.Component {
 
-    handleClick = (e) => {
+    handleClickModal = (e) => {
         const id = e.target.dataset.id;
         this.props.handleReportId(id);
     }
@@ -37,7 +37,7 @@ export default class ReportSingle extends React.Component {
                         <p>Status</p>
                     </div>
                     <div className="col s12 m12 l2 see-more valign-wrapper">
-                        <i onClick={this.handleClick} data-id={id} data-target="report-modal" className="modal-trigger material-icons">remove_red_eye</i>
+                        <i onClick={this.handleClickModal} data-id={id} data-target="report-modal" className="modal-trigger material-icons">remove_red_eye</i>
                         <i onClick={this.handleClickDelete} data-id={id} className="material-icons">close</i>
                     </div>
                 </div>

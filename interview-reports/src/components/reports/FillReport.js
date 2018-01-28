@@ -54,7 +54,6 @@ export default class FillReport extends React.Component {
             const format = 'LLL';
             const momentDate = newReportData.interviewDate.format(format);
             newReportData.interviewDate = (new Date(momentDate)).toString();
-            console.log(newReportData);
             this.props.handleCreateReport(newReportData);
         }
     }
