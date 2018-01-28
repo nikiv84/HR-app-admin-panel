@@ -1,4 +1,4 @@
-# HR job tracking app - Aadmin panel
+# HR job tracking app - Admin panel
 
 A responsive administrative panel for HR web application, responsible for creating/modifying/deleting Interview Reports.
 
